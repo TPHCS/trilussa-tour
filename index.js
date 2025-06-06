@@ -431,3 +431,4 @@ switchScene = function(sceneId) {
   if (variants.length > 1) showColorSelector(variants, sceneId);
   else hideColorSelector();
 };
+window.switchScene = switchScene;
