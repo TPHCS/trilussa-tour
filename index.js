@@ -389,6 +389,37 @@
   // Display the initial scene.
   switchScene(scenes[0]);
 
+  // Expose switchScene globally (needed by color selector and dynamic DOM)
+  window.switchScene = switchScene;
+
+  // Populate #sceneListUl dynamically, skipping variantOf scenes
+  const sceneListUl = document.getElementById("sceneListUl");
+  if (sceneListUl) {
+    sceneListUl.innerHTML = "";
+    scenes.forEach(function(scene) {
+      if (!scene.data.variantOf) {
+        const a = document.createElement("a");
+        a.href = "javascript:void(0)";
+        a.classList.add("scene");
+        a.setAttribute("data-id", scene.data.id);
+
+        const li = document.createElement("li");
+        li.classList.add("text");
+        li.textContent = scene.data.name;
+
+        a.appendChild(li);
+        sceneListUl.appendChild(a);
+
+        a.addEventListener("click", function() {
+          switchScene(scene);
+          if (document.body.classList.contains("mobile")) {
+            hideSceneList();
+          }
+        });
+      }
+    });
+  }
+
 })();
 
 
@@ -431,4 +462,3 @@ switchScene = function(sceneId) {
   if (variants.length > 1) showColorSelector(variants, sceneId);
   else hideColorSelector();
 };
-window.switchScene = switchScene;
