@@ -390,3 +390,44 @@
   switchScene(scenes[0]);
 
 })();
+
+
+
+// --- Color Variant Selector ---
+function getVariantsFor(sceneId) {
+  const currentScene = APP_DATA.scenes.find(s => s.id === sceneId);
+  if (!currentScene || !currentScene.variantOf) return [];
+  const base = currentScene.variantOf;
+  return APP_DATA.scenes.filter(s => s.variantOf === base);
+}
+
+function showColorSelector(variants, currentId) {
+  const container = document.getElementById('colorSelector');
+  const btnHolder = document.getElementById('variantButtons');
+  btnHolder.innerHTML = '';
+  variants.forEach(v => {
+    const btn = document.createElement('button');
+    btn.textContent = v.name.replace(/^.*COLORE?\s?/i, '');
+    btn.style.margin = '0 4px';
+    btn.style.padding = '4px 10px';
+    btn.style.borderRadius = '6px';
+    btn.style.border = v.id === currentId ? '2px solid black' : '1px solid gray';
+    btn.style.cursor = 'pointer';
+    btn.onclick = () => switchScene(v.id);
+    btnHolder.appendChild(btn);
+  });
+  container.style.display = 'block';
+}
+
+function hideColorSelector() {
+  document.getElementById('colorSelector').style.display = 'none';
+}
+
+// Hook into scene switch
+const originalSwitchScene = switchScene;
+switchScene = function(sceneId) {
+  originalSwitchScene(sceneId);
+  const variants = getVariantsFor(sceneId);
+  if (variants.length > 1) showColorSelector(variants, sceneId);
+  else hideColorSelector();
+};
