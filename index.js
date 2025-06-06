@@ -389,37 +389,6 @@
   // Display the initial scene.
   switchScene(scenes[0]);
 
-  // Expose switchScene globally (needed by color selector and dynamic DOM)
-  window.switchScene = switchScene;
-
-  // Populate #sceneListUl dynamically, skipping variantOf scenes
-  const sceneListUl = document.getElementById("sceneListUl");
-  if (sceneListUl) {
-    sceneListUl.innerHTML = "";
-    scenes.forEach(function(scene) {
-      if (!scene.data.variantOf) {
-        const a = document.createElement("a");
-        a.href = "javascript:void(0)";
-        a.classList.add("scene");
-        a.setAttribute("data-id", scene.data.id);
-
-        const li = document.createElement("li");
-        li.classList.add("text");
-        li.textContent = scene.data.name;
-
-        a.appendChild(li);
-        sceneListUl.appendChild(a);
-
-        a.addEventListener("click", function() {
-          switchScene(scene);
-          if (document.body.classList.contains("mobile")) {
-            hideSceneList();
-          }
-        });
-      }
-    });
-  }
-
 })();
 
 
@@ -454,11 +423,46 @@ function hideColorSelector() {
   document.getElementById('colorSelector').style.display = 'none';
 }
 
-// Hook into scene switch
+
+
+// Create simplified scene list only with main zones (no variants)
+const sceneListItems = document.getElementById('sceneListItems');
+data.scenes.forEach(scene => {
+  if (!scene.variantOf) {
+    const link = document.createElement('a');
+    link.href = 'javascript:void(0)';
+    link.className = 'scene';
+    link.setAttribute('data-id', scene.id);
+
+    const li = document.createElement('li');
+    li.className = 'text';
+    li.innerText = scene.name;
+    link.appendChild(li);
+    sceneListItems.appendChild(link);
+
+    link.addEventListener('click', function() {
+      switchScene(scene.id);
+      if (document.body.classList.contains('mobile')) {
+        document.getElementById('sceneList').classList.remove('enabled');
+        document.getElementById('sceneListToggle').classList.remove('enabled');
+      }
+    });
+  }
+});
+
+// Override switchScene with variant selector
 const originalSwitchScene = switchScene;
-switchScene = function(sceneId) {
-  originalSwitchScene(sceneId);
-  const variants = getVariantsFor(sceneId);
-  if (variants.length > 1) showColorSelector(variants, sceneId);
+switchScene = function(sceneOrId) {
+  let scene;
+  if (typeof sceneOrId === 'string') {
+    scene = findSceneById(sceneOrId);
+  } else {
+    scene = sceneOrId;
+  }
+
+  if (!scene) return;
+  originalSwitchScene(scene);
+  const variants = getVariantsFor(scene.data.id);
+  if (variants.length > 1) showColorSelector(variants, scene.data.id);
   else hideColorSelector();
 };
