@@ -454,13 +454,15 @@
     return null;
   }
 
-  var initialId = window.location.hash.substring(1);
+  var rawHash = window.location.hash.substring(1);
+  var initialId = slugToId[rawHash] || rawHash;
   var initialSceneObj = scenesById[initialId] || parentScenes[0];
   switchScene(initialSceneObj);
 
   window.addEventListener('hashchange', function() {
-    var newId = window.location.hash.substring(1);
-    var sceneObj = scenesById[newId];
+    var rawHash = window.location.hash.substring(1);
+    var id = slugToId[rawHash] || rawHash;
+    var sceneObj = scenesById[id];
     if (sceneObj) { switchScene(sceneObj); }
   });
 
