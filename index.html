@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trilussa Tour</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <style>@-ms-viewport { width: device-width; }</style>
+  <link rel="stylesheet" href="vendor/reset.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6QDRLD6244"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-6QDRLD6244');
+  </script>
+</head>
+
+<body class="multiple-scenes">
+  <script>if (!window.location.hash) { window.location.replace(window.location.href + '#maya'); }</script>
+
+  <!-- Loading spinner overlay -->
+  <div id="spinner" style="display:none;">
+    <div class="loader"></div>
+  </div>
+  <div id="pano"></div>
+
+  <div id="sceneList">
+    <ul class="scenes">
+      <a href="javascript:void(0)" class="scene" data-id="9-maya"><li class="text">MAYA</li></a>
+      <a href="javascript:void(0)" class="scene" data-id="19-moon"><li class="text">MOON</li></a>
+      <a href="javascript:void(0)" class="scene" data-id="0-domus"><li class="text">DOMUS</li></a>
+      <a href="javascript:void(0)" class="scene" data-id="17-roof"><li class="text">8TH FLOOR</li></a>
+      <a href="javascript:void(0)" class="scene" data-id="14-orto"><li class="text">ORTO</li></a>
+      <a href="javascript:void(0)" class="scene" data-id="4-gym"><li class="text">GYM</li></a>
+      <a href="javascript:void(0)" class="scene" data-id="0-416first"><li class="text">416</li></a>
+      <a href="javascript:void(0)" class="scene" data-id="6-lobby"><li class="text">LOBBY</li></a>
+    </ul>
+  </div>
+
+  <div id="titleBar">
+    <a href="/" id="logoLink"><img id="logo" src="img/FDEEEB8F-E8DD-409C-9FB0-AD820ED8AEED.PNG" alt="Venue Logo"></a>
+    <h1 class="sceneName"></h1>
+    <button id="shareButton" class="share-button" title="Copy share link">🔗</button>
+  </div>
+
+  <a href="javascript:void(0)" id="autorotateToggle">
+    <img class="icon off" src="img/play.png">
+    <img class="icon on" src="img/pause.png">
+  </a>
+
+  <a href="javascript:void(0)" id="fullscreenToggle">
+    <img class="icon off" src="img/fullscreen.png">
+    <img class="icon on" src="img/windowed.png">
+  </a>
+
+  <a href="javascript:void(0)" id="sceneListToggle">
+    <img class="icon off" src="img/expand.png">
+    <img class="icon on" src="img/collapse.png">
+  </a>
+
+  <a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1"><img class="icon" src="img/up.png"></a>
+  <a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2"><img class="icon" src="img/down.png"></a>
+  <a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3"><img class="icon" src="img/left.png"></a>
+  <a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4"><img class="icon" src="img/right.png"></a>
+  <a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5"><img class="icon" src="img/plus.png"></a>
+  <a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6"><img class="icon" src="img/minus.png"></a>
+
+  <!-- View Selector -->
+  <div id="colorSelector">
+    <span style="font-weight:bold;margin-right:10px;">View:</span>
+    <span id="variantButtons"></span>
+  </div>
+
+  <script src="vendor/screenfull.min.js"></script>
+  <script src="vendor/bowser.min.js"></script>
+  <script src="vendor/marzipano.js"></script>
+
+  <script src="data.js"></script>
+  <script src="index.js"></script>
+
+  <!-- Start of Tawk.to Script -->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5aaf9c2bd7591465c708b038/1impge3p1';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!-- End of Tawk.to Script -->
+
+</body>
+</html>
+
