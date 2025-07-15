@@ -1,5 +1,0 @@
- # Ignore duplicate tile folders created during deployments
- tiles/*\ 2/
- 
- # macOS metadata
- .DS_Store
