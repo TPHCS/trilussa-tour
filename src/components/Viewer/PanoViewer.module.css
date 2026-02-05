@@ -1,0 +1,36 @@
+.viewer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-viewer);
+  background: var(--color-bg-darker);
+}
+
+.viewer :global(.psv-container) {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.viewer :global(.psv-virtual-tour-link) {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(200, 168, 139, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.viewer :global(.psv-virtual-tour-link:hover) {
+  transform: scale(1.2);
+  background: rgba(200, 168, 139, 0.9);
+}
+
+.viewer :global(.psv-virtual-tour-tooltip) {
+  background: rgba(30, 27, 24, 0.9);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(200, 168, 139, 0.3);
+}
