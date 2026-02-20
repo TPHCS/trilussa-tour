@@ -26,7 +26,7 @@ function buildPanoramaConfig(scene) {
   const rawLevels = (scene.levels || []).filter(l => !l.fallbackOnly);
   const panorama = {
     faceSize: scene.faceSize,
-    flipTopBottom: true,
+    flipTopBottom: false,
     levels: rawLevels.map(l => ({
       faceSize: l.size,
       nbTiles: l.size / l.tileSize,
